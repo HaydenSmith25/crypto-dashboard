@@ -1,11 +1,11 @@
-import newsFeed from "./Components/NewsFeed";
-import currencyConverter from "./Components/currencyConverter";
+import NewsFeed from "./Components/NewsFeed";
+import CurrencyConverter from "./Components/currencyConverter";
 
 const App = () => {
   return (
     <div className="App">
-      <newsFeed />
-      <currencyConverter />
+      <CurrencyConverter />
+      <NewsFeed />
     </div>
   );
 };

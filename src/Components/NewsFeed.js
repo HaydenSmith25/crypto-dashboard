@@ -1,5 +1,5 @@
-const newsFeed = () => {
-  return <div className="news-feed">newsFeed</div>;
+const NewsFeed = () => {
+  return <div className="news-feed">NewsFeed</div>;
 };
 
-export default newsFeed;
+export default NewsFeed;
