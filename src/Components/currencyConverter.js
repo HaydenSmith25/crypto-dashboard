@@ -8,8 +8,14 @@ const CurrencyConverter = () => {
   const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState("BTC");
   const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState("BTC");
   const [amount, setAmount] = useState(1);
-  const [exchangeRate, setExchangeRate] = useState(0);
+
+  const [exchangedData, setExchangedData] = useState({
+    primaryCurrency: "BTC",
+    secondaryCurrency: "BTC",
+    exchangeRate: 0,
+  });
   const [result, setResult] = useState(0);
+  console.log(exchangedData);
 
   const convert = () => {
     const options = {
@@ -33,20 +39,28 @@ const CurrencyConverter = () => {
         console.log(
           response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
         );
-        setExchangeRate(
-          response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
-        );
+        // setExchangeRate(
+        //   response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+        // );
         setResult(
           response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"] *
             amount
         );
+        // setPrimaryCurrencyExchanged(chosenPrimaryCurrency);
+        // setSecondaryCurrencyExchanged(chosenSecondaryCurrency);
+        setExchangedData({
+          primaryCurrency: chosenPrimaryCurrency,
+          secondaryCurrency: chosenPrimaryCurrency,
+          exchangeRate:
+            response.data["Realtime Currency Exchange Rate"][
+              "5. Exchange Rate"
+            ],
+        });
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
-  console.log(exchangeRate);
 
   return (
     <div className="currency-converter">
@@ -106,11 +120,7 @@ const CurrencyConverter = () => {
           Convert
         </button>
       </div>
-      <ExchangeRate
-        exchangeRate={exchangeRate}
-        chosenPrimaryCurrency={chosenPrimaryCurrency}
-        chosenSecondaryCurrency={chosenSecondaryCurrency}
-      />
+      <ExchangeRate exchangedData={exchangedData} />
     </div>
   );
 };
