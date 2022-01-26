@@ -8,9 +8,12 @@ const CurrencyConverter = () => {
   const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState("BTC");
   const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState("BTC");
   const [amount, setAmount] = useState(1);
+  const [exchangeRate, setExchangeRate] = useState(0);
+  const [result, setResult] = useState(0);
 
   const convert = () => {
     const options = {
+      credntials: "include",
       method: "GET",
       url: "https://alpha-vantage.p.rapidapi.com/query",
       params: {
@@ -20,19 +23,30 @@ const CurrencyConverter = () => {
       },
       headers: {
         "x-rapidapi-host": "alpha-vantage.p.rapidapi.com",
-        "x-rapidapi-key": "SIGN-UP-FOR-KEY",
+        "x-rapidapi-key": "2cff0e9c19msh96c7d87bce15d5fp1e8c6ajsn6c0a1f532305",
       },
     };
 
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data);
+        console.log(
+          response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+        );
+        setExchangeRate(
+          response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+        );
+        setResult(
+          response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"] *
+            amount
+        );
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  console.log(exchangeRate);
 
   return (
     <div className="currency-converter">
@@ -67,7 +81,11 @@ const CurrencyConverter = () => {
             <tr>
               <td>Secondary Currency:</td>
               <td>
-                <input type="number" name="currency-amount-2" value={""} />
+                <input
+                  name="currency-amount-2"
+                  value={result}
+                  disabled={true}
+                />
               </td>
               <td>
                 <select
