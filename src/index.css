@@ -15,10 +15,16 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: linear-gradient(
+    0deg,
+    rgb(73, 121, 161) 0%,
+    rgb(175, 143, 84) 100%
+  );
 }
 
 .app-wrapper {
   display: flex;
+  box-shadow: 0 3px 10px rgb(0 0 0 0.2);
 }
 
 .news-feed {
@@ -27,6 +33,7 @@ code {
   margin: 5px;
   box-shadow: 0 3px 10px rgb(0 0 0 0.2);
   max-width: 300px;
+  text-align: center;
 }
 
 .currency-converter {
@@ -34,6 +41,7 @@ code {
   padding: 10px;
   margin: 5px;
   box-shadow: 0 3px 10px rgb(0 0 0 0.2);
+  text-align: center;
 }
 
 .exchange-rate {
@@ -42,6 +50,7 @@ code {
   margin-top: 10px;
   box-shadow: 0 3px 10px rgb(0 0 0 0.2);
   border-radius: 10px;
+  text-align: center;
 }
 
 .input-box {
